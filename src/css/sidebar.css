@@ -1,0 +1,73 @@
+aside
+{
+    width:16vw;
+    height: calc(100vh - 140px);
+    border-right: 1px solid #ccc;
+}
+#sidebarNav
+{
+    justify-content: space-evenly;
+    display:flex;
+    list-style:none;
+    padding:0;
+    border-bottom: 1px solid #ccc;
+}
+#sidebarNav li
+{
+    float: right;
+    margin:auto;
+}
+#sidebarNav li:hover
+{
+    background-color:#ccc;
+}
+
+#sidebarNav li a
+{
+    display:flex;
+    text-decoration: none;
+}
+
+#sidebarContent
+{
+    height:80%;
+    width:50%;
+    display:block;
+    margin:auto;
+}
+.btn-group
+{
+    width:100%;
+}
+.btn-group button {
+    background-color: mintcream; /* Green background */
+    border: 1px solid mintcream; /* Green border */
+    color: #069; /* White text */
+    padding: 10px 24px; /* Some padding */
+    cursor: pointer; /* Pointer/hand icon */
+    float: left; /* Float the buttons side by side */
+}
+.three button
+{
+    width: 33.3%;
+}
+.two button
+{
+    width: 50%;
+}
+  
+  .btn-group button:not(:last-child) {
+    border-right: none; /* Prevent double borders */
+  }
+  
+  /* Clear floats (clearfix hack) */
+  .btn-group:after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+  
+  /* Add a background color on hover */
+  .btn-group button:hover {
+    background-color: mintcream;
+  }

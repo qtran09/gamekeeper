@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Calendar = require('./calendar.model');
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema(
@@ -25,6 +26,10 @@ const userSchema = new Schema(
             trim: true,
             minLength: 5
         },
+        Calendars:
+        {
+            type: [String],
+        }
     },
     {
         timestamps: true,

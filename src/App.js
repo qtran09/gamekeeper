@@ -2,7 +2,10 @@ import React, {useState, useEffect} from 'react';
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import './App.css';
-import CalendarList from './components/calendar-list.component';
+import "./styles.css";
+import "./css/navbar.css";
+import "./css/sidebar.css";
+import Login from './components/login-view-component';
 import Home from './components/home-view.component';
 import UserContext from './context/UserContext';
 import axios from 'axios';
@@ -24,7 +27,6 @@ function App() {
       {
         const userRes = await axios.get("http://localhost:3000/users/",{headers:{'x-auth-token': token}});
         setUserData({token, user: userRes.data});
-        console.log("User: " + userRes.data);
       }
     };
     checkLoggedIn();
@@ -34,7 +36,7 @@ function App() {
       <UserContext.Provider value = {{userData, setUserData}}>
       <Switch>
         <Route path='/' exact component={Home}/>
-        <Route path='/login' component={CalendarList}/>
+        <Route path='/login' component={Login}/>
       </Switch>
       </UserContext.Provider>
     </Router>

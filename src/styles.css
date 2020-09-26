@@ -1,0 +1,19 @@
+form label, form input
+{
+    display:block;
+}
+
+.page, html, body, #root
+{
+    height:100%;
+    width:100%;
+    display: block;
+}
+body
+{
+    overflow-y: hidden;
+}
+li
+{
+    cursor: pointer;
+}

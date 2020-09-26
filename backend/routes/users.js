@@ -9,8 +9,6 @@ router.route('/').get(auth, async (req,res) =>
     try
     {
         const user = await User.findById(req.user);
-        console.log(req);
-        console.log("User: " + req.user);
         res.json(
             {
                 userName: user.userName,
@@ -20,6 +18,7 @@ router.route('/').get(auth, async (req,res) =>
     }
     catch(err)
     {
+        console.log(err.message);
         res.status(500).json({err: err.message});
     }
 });
@@ -50,6 +49,7 @@ router.post("/login", async (req, res) => {
         },
       });
     } catch (err) {
+        console.log(err.message);
       res.status(500).json({ error: err.message });
     }
   });
@@ -87,6 +87,7 @@ router.route('/register').post(async (req,res) =>
     }
     catch(err)
     {
+        console.log(err.message);
         return res.status(500).json({error : err.message});
     }
 });

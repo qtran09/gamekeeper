@@ -1,15 +1,16 @@
 import React from 'react';
 import "../css/footer.css";
 
-
-export default function Calendar()
+export default function Footer()
 {
     return (
-        <></>
+        <footer id="footer">
+            <h3>Footer</h3>
+        </footer>
     );
 }
 
-// class Calendar extends React.Component {
+// class Footer extends React.Component {
 //     constructor(props) {
 //         super(props);
 //         this.state =
@@ -19,7 +20,10 @@ export default function Calendar()
 //     }
 //     render() {
 //         return (
-//             <></>
+//             <footer id="footer">
+//                 <h3>Footer</h3>
+//             </footer>
 //         );
 //     }
 // }
+
