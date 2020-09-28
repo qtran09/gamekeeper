@@ -17,9 +17,11 @@ export default function Home() {
   return (userData.user ? (
     <div className="page">
       <NavBar />
-      <Sidebar />
-      <Calendar/>
-      <Footer/>
+      <div id="mainDiv">
+        <Sidebar />
+        <Calendar />
+      </div>
+      <Footer />
     </div>
   ) :
     <></>

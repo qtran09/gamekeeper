@@ -10,20 +10,4 @@ export default function Footer()
     );
 }
 
-// class Footer extends React.Component {
-//     constructor(props) {
-//         super(props);
-//         this.state =
-//         {
-
-//         }
-//     }
-//     render() {
-//         return (
-//             <footer id="footer">
-//                 <h3>Footer</h3>
-//             </footer>
-//         );
-//     }
-// }
 

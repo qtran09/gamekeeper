@@ -25,25 +25,3 @@ export default function Navbar()
         </div>
     );
 }
-
-// class Navbar extends React.Component
-// {
-    
-//     constructor(props)
-//     {
-//         super(props);
-//     }
-//     render()
-//     {
-//         return (
-//             <div id="navParent">
-//                 <ul id="nav">
-//                     <li><a>Logout</a></li>
-//                     <li><a>Item 2</a></li>
-//                     <li><a>Item 3</a></li>
-//                 </ul>
-//             </div>
-
-//         );
-//     }
-// }

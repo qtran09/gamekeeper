@@ -1,0 +1,99 @@
+#calendarContent
+{
+    width: 100%;
+    height: 100%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#calendarNameBar
+{
+    display:flex;
+    justify-content: space-between;
+    margin-left: 8px;
+    margin-right: 8px;
+}
+#calendarNameBar label
+{
+    font-style: italic;
+    font-size:1.5em;
+}
+#calendarNameBar label:first-child
+{
+    font-size: 2em;
+}
+.calendarCentered
+{
+    display:flex;
+    justify-content: center;
+}
+
+.calendarCentered label
+{
+    margin-left: 8px;
+    margin-right: 8px;
+}
+
+.calendarCentered button
+{
+    border-style: none;
+}
+.calendarCentered button:hover
+{
+    background-color: #ccc;
+}
+.calendarCentered img
+{
+    height:24px;
+}
+
+.calendarCentered label ~ button img
+{
+    transform: scaleX(-1);
+}
+
+.daysOfTheWeek
+{
+    list-style: none;
+    width:100%;
+    text-align: center;
+    padding:0;
+    margin: 0;
+}
+
+.daysOfTheWeek li
+{
+    display: inline-block;
+    width: 14.2857%;
+    cursor: default;
+    border: 1px solid #ccc;
+}
+
+#calendar
+{
+    height: calc(100% - 140px);
+    display:flex;
+    flex-wrap: wrap;
+}
+
+#calendar div
+{
+    width: 14.2857%;
+    margin: 0;
+    border: 1px solid #ccc;
+}
+
+#calendarEventButtonGroup button
+{
+    width:50%;
+    border-style: none;   
+}
+#calendarEventButtonGroup button:first-child
+{
+    border-right: 1px solid #ccc;   
+}
+#calendarEventButtonGroup button:hover
+{
+    background-color: #ccc; 
+}

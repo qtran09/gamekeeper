@@ -1,7 +1,6 @@
 import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import axios from 'axios';
-
 import UserContext from "../context/UserContext";
 
 export default function Login() {
@@ -16,11 +15,6 @@ export default function Login() {
     const { setUserData } = useContext(UserContext);
     const history = useHistory();
     const { userData } = useContext(UserContext);
-    if (userData.user) {
-        history.push('/');
-        return null;
-    }
-
 
     const submitRegister = async (e) => {
         e.preventDefault();
@@ -50,47 +44,51 @@ export default function Login() {
         localStorage.setItem('auth-token', loginRes.data.token);
         history.push('/');
     }
+    if (userData.user) {
+        history.push('/');
+        return null;
+    }
 
     return (
-            <main className="container">
-                <div className="row">
-                    <section id="smallAbout" className="col">
-                        <h2>About This Thing</h2>
-                    </section>
-                    <section id="login" className="col">
-                        <h2>Login Section</h2>
-                        <form onSubmit={submitLogin}>
-                            <label htmlFor="login-email">Email</label>
-                            <input id="login-email" type="email" onChange={e => setLoginEmail(e.target.value)} />
+        <main className="container">
+            <div className="row">
+                <section id="smallAbout" className="col">
+                    <h2>About This Thing</h2>
+                </section>
+                <section id="login" className="col">
+                    <h2>Login Section</h2>
+                    <form onSubmit={submitLogin}>
+                        <label htmlFor="login-email">Email</label>
+                        <input id="login-email" type="email" onChange={e => setLoginEmail(e.target.value)} />
 
-                            <label htmlFor="login-password">Password</label>
-                            <input id="login-password" type="password" onChange={e => setLoginPassword(e.target.value)} />
-                            <br />
-                            <input type="submit" value="Login" />
+                        <label htmlFor="login-password">Password</label>
+                        <input id="login-password" type="password" onChange={e => setLoginPassword(e.target.value)} />
+                        <br />
+                        <input type="submit" value="Login" />
 
-                        </form>
+                    </form>
 
-                    </section>
-                    <section id="signup" className="col">
-                        <h2>Signup Section</h2>
-                        <form onSubmit={submitRegister}>
+                </section>
+                <section id="signup" className="col">
+                    <h2>Signup Section</h2>
+                    <form onSubmit={submitRegister}>
 
-                            <label htmlFor="register-userName">Username</label>
-                            <input id="register-userName" type="text" onChange={e => setUsername(e.target.value)} />
-                            <label htmlFor="register-email">Email</label>
-                            <input id="register-email" type="email" onChange={e => setEmail(e.target.value)} />
+                        <label htmlFor="register-userName">Username</label>
+                        <input id="register-userName" type="text" onChange={e => setUsername(e.target.value)} />
+                        <label htmlFor="register-email">Email</label>
+                        <input id="register-email" type="email" onChange={e => setEmail(e.target.value)} />
 
-                            <label htmlFor="register-password">Password</label>
-                            <input id="register-password" type="password" onChange={e => setPassword(e.target.value)} />
+                        <label htmlFor="register-password">Password</label>
+                        <input id="register-password" type="password" onChange={e => setPassword(e.target.value)} />
 
-                            <label htmlFor="register-checkPassword">Verify Password</label>
-                            <input id="register-checkPassword" type="password" onChange={e => setPasswordCheck(e.target.value)} />
+                        <label htmlFor="register-checkPassword">Verify Password</label>
+                        <input id="register-checkPassword" type="password" onChange={e => setPasswordCheck(e.target.value)} />
 
-                            <br />
-                            <input type="submit" value="Register" />
-                        </form>
-                    </section>
-                </div>
-            </main>
+                        <br />
+                        <input type="submit" value="Register" />
+                    </form>
+                </section>
+            </div>
+        </main>
     );
 }

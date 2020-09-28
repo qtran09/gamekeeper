@@ -4,33 +4,10 @@ aside
     height: calc(100vh - 140px);
     border-right: 1px solid #ccc;
 }
-#sidebarNav
-{
-    justify-content: space-evenly;
-    display:flex;
-    list-style:none;
-    padding:0;
-    border-bottom: 1px solid #ccc;
-}
-#sidebarNav li
-{
-    float: right;
-    margin:auto;
-}
-#sidebarNav li:hover
-{
-    background-color:#ccc;
-}
-
-#sidebarNav li a
-{
-    display:flex;
-    text-decoration: none;
-}
 
 #sidebarContent
 {
-    height:80%;
+    height:83%;
     width:50%;
     display:block;
     margin:auto;
@@ -64,10 +41,10 @@ aside
   .btn-group:after {
     content: "";
     clear: both;
-    display: table;
+    display: block;
   }
   
   /* Add a background color on hover */
   .btn-group button:hover {
-    background-color: mintcream;
+    background-color: #ccc;
   }

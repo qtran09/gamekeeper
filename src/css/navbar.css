@@ -27,8 +27,7 @@
 
 #nav li:hover
 {
-    color: #c00;
-    background-color: #fff;
+    background-color: #ccc;
 }
 
 #navParent:after
