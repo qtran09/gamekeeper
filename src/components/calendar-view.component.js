@@ -1,11 +1,18 @@
 import React, { useContext, useState, useEffect } from 'react';
 import UserContext from '../context/UserContext';
+import CalendarContext from '../context/CalendarContext';
 import "../css/calendar-view.css";
 import doublearrow from '../assets/doublearrow.png';
 import singlearrow from '../assets/singlearrow.png';
 
+import Modal from 'react-modal'
+import Popup from './popup-component';
+import '../css/popup.css';
+
 
 export default function Calendar() {
+
+    Modal.setAppElement("#root");
     const DAYS = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
     const DAYS_LEAP = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
     const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -16,6 +23,9 @@ export default function Calendar() {
     const [month, setMonth] = useState(date.getMonth());
     const [year, setYear] = useState(date.getFullYear());
     const [startDay, setStartDay] = useState(getStartDayOfMonth(date));
+
+    const { userData } = useContext(UserContext);
+    const { calendarData } = useContext(CalendarContext);
 
     useEffect(() => {
         setDay(date.getDate());
@@ -32,20 +42,39 @@ export default function Calendar() {
         return (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
     }
 
-    function roundUp(numToRound, multiple)
-    {
-        return (Math.floor((numToRound + multiple - 1)/multiple))*multiple;
+    function roundUp(numToRound, multiple) {
+        return (Math.floor((numToRound + multiple - 1) / multiple)) * multiple;
+    }
+
+    const [isOpen, setIsOpen] = useState(false);
+
+    function openModal() {
+        setIsOpen(true);
+    }
+    function closeModal() {
+        setIsOpen(false);
+    }
+    const add_calendar_styles = {
+        content: {
+            width: '20%',
+            height: '20%',
+            justifyContent: 'center',
+            alignItems: 'center',
+            display: 'flex',
+            justifySelf: 'center',
+            alignSelf: 'center',
+            margin: 'auto'
+        }
     }
 
     const days = isLeapYear(date.getFullYear()) ? DAYS_LEAP : DAYS;
-    const totalBoxes = roundUp(days[month] + (startDay-1),7);
+    const totalBoxes = roundUp(days[month] + (startDay - 1), 7);
 
-    const { userData } = useContext(UserContext);
     return (
         <div className="page calendarContent">
             <div id="calendarNameBar">
-                <label>Placeholder Calendar Name</label>
-                <label>Owned by: {userData.user.userName}</label>
+                <label>{(calendarData && calendarData.calendar && calendarData.calendar.calendar) ? calendarData.calendar.calendar.calendarName : "Placeholder Calendar Name"}</label>
+                <label>Owned by: {(calendarData && calendarData.calendar && calendarData.calendar.calendar) ? calendarData.calendar.calendar.ownerId : "Placeholder Owner Name"}</label>
             </div>
             <div className="calendarCentered">
                 <button onClick={() => setDate(new Date(year - 1, month, day))}><img src={doublearrow} alt="Back 1 year" /></button>
@@ -71,19 +100,23 @@ export default function Calendar() {
                     .map((_, index) => {
                         const d = index - (startDay - 2);
                         return (
-                            <div key= {index} 
+                            <div key={index}
                                 onClick={() => {
                                     setDate(new Date(year, month, d));
                                 }}
                             >
-                                {d > 0 && d <= days[month]? d : ''}
+                                {d > 0 && d <= days[month] ? d : ''}
                             </div>
                         );
-                })}
+                    })}
             </div>
+            <Modal isOpen={isOpen} onRequestClose={closeModal} contentLabel="Example Modal" style={add_calendar_styles}>
+                <Popup type="addCalendar" onClose={closeModal}></Popup>
+            </Modal>
             <div id="calendarEventButtonGroup">
-                <button>Add Event</button>
-                <button>Some other button</button>
+                <button onClick={openModal}>Add Calendar</button>
+                <button>Delete Calendar</button>
+                <button>Calendar Permissions</button>
             </div>
         </div>
     );

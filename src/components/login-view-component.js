@@ -12,9 +12,8 @@ export default function Login() {
     const [loginEmail, setLoginEmail] = useState();
     const [loginPassword, setLoginPassword] = useState();
 
-    const { setUserData } = useContext(UserContext);
+    const { userData, setUserData } = useContext(UserContext);
     const history = useHistory();
-    const { userData } = useContext(UserContext);
 
     const submitRegister = async (e) => {
         e.preventDefault();

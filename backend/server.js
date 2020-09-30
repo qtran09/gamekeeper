@@ -10,7 +10,7 @@ const port = process.env.port || 3000;
 app.use(cors());
 app.use(express.json());
 const uri = process.env.ATLAS_URI;
-mongoose.connect(uri, {useNewUrlParser: true, useCreateIndex : true, useUnifiedTopology: true});
+mongoose.connect(uri, {useNewUrlParser: true, useCreateIndex : true, useUnifiedTopology: true, useFindAndModify: false});
 
 const connection = mongoose.connection;
 
@@ -20,8 +20,9 @@ connection.once('open', function()
 });
 
 const usersRouter = require('./routes/users');
-
+const calendarRouter = require('./routes/calendars');
 app.use('/users', usersRouter);
+app.use('/calendars', calendarRouter);
 
 app.listen(port, function()
 {

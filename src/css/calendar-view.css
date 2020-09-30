@@ -86,13 +86,11 @@
 
 #calendarEventButtonGroup button
 {
-    width:50%;
-    border-style: none;   
-}
-#calendarEventButtonGroup button:first-child
-{
+    width:33.3%;
+    border-style: none;
     border-right: 1px solid #ccc;   
 }
+
 #calendarEventButtonGroup button:hover
 {
     background-color: #ccc; 

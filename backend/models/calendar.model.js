@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const User = require('./user.model');
+const Event = require('./event.model').schema;
 const Schema = mongoose.Schema;
 
 const calendarSchema = new Schema(
@@ -11,6 +12,15 @@ const calendarSchema = new Schema(
             unique: true,
             trim: true,
             minLength: 3
+        },
+        ownerId:
+        {
+            type: String, //User ID
+            required: true
+        },
+        events:
+        {
+            type: [Event]
         }
     },
     {

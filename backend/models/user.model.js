@@ -28,7 +28,7 @@ const userSchema = new Schema(
         },
         Calendars:
         {
-            type: [String],
+            type: [String], //Calendar IDs
         }
     },
     {

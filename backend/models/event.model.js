@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const eventSchema = new Schema(
     {
-        game:
+        versus:
         {
             type: String,
             required: true,

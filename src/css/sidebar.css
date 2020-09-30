@@ -7,10 +7,26 @@ aside
 
 #sidebarContent
 {
-    height:83%;
-    width:50%;
-    display:block;
-    margin:auto;
+    justify-content: center;
+    height:80%;
+    list-style-type: none;
+    width:100%;
+    padding:0;
+    flex-wrap: wrap;
+}
+
+#sidebarContent li
+{
+  width:100%;
+  justify-content: center;
+  display:flex;
+  height:40px;
+  background-color:whitesmoke;
+}
+#sidebarContent li:hover
+{
+
+  background-color:#ccc;
 }
 .btn-group
 {
