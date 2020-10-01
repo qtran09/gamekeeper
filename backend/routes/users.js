@@ -16,7 +16,6 @@ router.route('/').get(auth, async (req, res) => {
     );
   }
   catch (err) {
-    console.log(err.message);
     res.status(500).json({ err: err.message });
   }
 });
@@ -44,6 +43,7 @@ router.post("/login", async (req, res) => {
       user: {
         id: user._id,
         userName: user.userName,
+        Calendars: user.Calendars
       },
     });
   } catch (err) {
@@ -109,7 +109,7 @@ router.route('/tokenIsValid').post(async (req, res) => {
 
 router.route('/updateCalendar/:id').put(async (req, res, next) => {
   try {
-    User.findByIdAndUpdate(req.params.id, {$set: {"Calendars" : req.body.Calendars}},
+    await User.findByIdAndUpdate(req.params.id, {$set: {"Calendars" : req.body.Calendars}},
       (error, data) =>
       {
         if(error)

@@ -1,0 +1,15 @@
+.event
+{
+    display:flex;
+    height:100%;
+}
+.eventsContent
+{
+    width:60%;
+    border-right: 1px solid #ccc;
+}
+.eventsForm
+{
+    width:40%;
+    margin-left: 32px;
+}

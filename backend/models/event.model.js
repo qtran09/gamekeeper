@@ -3,6 +3,11 @@ const Schema = mongoose.Schema;
 
 const eventSchema = new Schema(
     {
+        date:
+        {
+            type: Date,
+            required: true
+        },
         versus:
         {
             type: String,

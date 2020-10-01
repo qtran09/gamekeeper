@@ -1,15 +1,17 @@
 const router = require('express').Router();
+
+const Event = require('../models/event.model');
 let Calendar = require('../models/calendar.model');
 
 router.route('/:id').get((req, res) => {
-        Calendar.findById(req.params.id)
+    Calendar.findById(req.params.id)
         .then(calendar => res.json(
             {
                 calendar: calendar
             }
         ))
-        .catch( err => res.status(500).json({error : err.message}));
-    
+        .catch(err => res.status(500).json({ error: err.message }));
+
 });
 
 router.route('/add').post((req, res) => {
@@ -27,16 +29,35 @@ router.route('/add').post((req, res) => {
         });
 });
 
-router.route('/delete/:id').delete(async (req, res) =>
-{
+router.route('/delete/:id').delete(async (req, res) => {
     try {
         console.log("ID: " + req.params.id);
         const deletedCalendar = await Calendar.findByIdAndRemove(req.params.id);
         console.log(deletedCalendar);
         res.json(deletedCalendar);
-      } catch (err) {
+    } catch (err) {
         res.status(500).json({ error: err.message });
-      }
-})
+    }
+});
+
+router.route('/addEvent/:id').put(async (req, res, next) => {
+    try {
+        console.log("Event: " + req.body.events);
+        await Calendar.findByIdAndUpdate(req.params.id, { $set: { "events": req.body.events } },
+            (error, data) => {
+                if (error) {
+                    return next(error);
+                }
+                else {
+                    console.log(error);
+                    res.json(data);
+                }
+            });
+    }
+    catch (err) {
+        console.log(err.message);
+        res.status(500).json({ error: err.message });
+    }
+});
 
 module.exports = router;

@@ -11,7 +11,7 @@ export default function Popup(props) {
         case "deleteCalendar":
             return <DeleteCalendarPopup/>
         case "event":
-            return <Event/>
+            return <Event date = {props.date}/>
         default:
             break;
     }

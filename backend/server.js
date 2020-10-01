@@ -21,8 +21,10 @@ connection.once('open', function()
 
 const usersRouter = require('./routes/users');
 const calendarRouter = require('./routes/calendars');
+const eventsRouter = require('./routes/events');
 app.use('/users', usersRouter);
 app.use('/calendars', calendarRouter);
+app.use('/events', eventsRouter);
 
 app.listen(port, function()
 {
