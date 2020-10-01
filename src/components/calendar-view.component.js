@@ -1,5 +1,4 @@
 import React, { useContext, useState, useEffect } from 'react';
-import UserContext from '../context/UserContext';
 import CalendarContext from '../context/CalendarContext';
 import "../css/calendar-view.css";
 import doublearrow from '../assets/doublearrow.png';
@@ -24,7 +23,6 @@ export default function Calendar() {
     const [year, setYear] = useState(date.getFullYear());
     const [startDay, setStartDay] = useState(getStartDayOfMonth(date));
 
-    const { userData } = useContext(UserContext);
     const { calendarData } = useContext(CalendarContext);
 
     useEffect(() => {
@@ -46,15 +44,31 @@ export default function Calendar() {
         return (Math.floor((numToRound + multiple - 1) / multiple)) * multiple;
     }
 
-    const [isOpen, setIsOpen] = useState(false);
+    const [addOpen, setAddOpen] = useState(false);
 
-    function openModal() {
-        setIsOpen(true);
+    function openAddModal() {
+        setAddOpen(true);
     }
-    function closeModal() {
-        setIsOpen(false);
+    function closeAddModal() {
+        setAddOpen(false);
     }
-    const add_calendar_styles = {
+    const [deleteOpen, setDeleteOpen] = useState(false);
+
+    function openDeleteModal() {
+        setDeleteOpen(true);
+    }
+    function closeDeleteModal() {
+        setDeleteOpen(false);
+    }
+
+    const [eventOpen, setEventOpen] = useState(false);
+    function openEventModal() {
+        setEventOpen(true);
+    }
+    function closeEventModal() {
+        setEventOpen(false);
+    }
+    const small_calendar_styles = {
         content: {
             width: '20%',
             height: '20%',
@@ -73,8 +87,8 @@ export default function Calendar() {
     return (
         <div className="page calendarContent">
             <div id="calendarNameBar">
-                <label>{(calendarData && calendarData.calendar && calendarData.calendar.calendar) ? calendarData.calendar.calendar.calendarName : "Placeholder Calendar Name"}</label>
-                <label>Owned by: {(calendarData && calendarData.calendar && calendarData.calendar.calendar) ? calendarData.calendar.calendar.ownerId : "Placeholder Owner Name"}</label>
+                <label>{(calendarData && calendarData.calendar) ? calendarData.calendar.calendarName : "Placeholder Calendar Name"}</label>
+                <label>Owned by: {(calendarData && calendarData.calendar) ? calendarData.calendar.ownerName : "Placeholder Owner Name"}</label>
             </div>
             <div className="calendarCentered">
                 <button onClick={() => setDate(new Date(year - 1, month, day))}><img src={doublearrow} alt="Back 1 year" /></button>
@@ -94,8 +108,11 @@ export default function Calendar() {
                     <li>Saturday</li>
                 </ul>
             </div>
+            <Modal isOpen={eventOpen} onRequestClose={closeEventModal}>
+                <Popup type="event" date={date}></Popup>
+            </Modal>
             <div id="calendar">
-                {Array(totalBoxes)
+                {((calendarData && calendarData.calendar)? Array(totalBoxes)
                     .fill(null)
                     .map((_, index) => {
                         const d = index - (startDay - 2);
@@ -103,19 +120,24 @@ export default function Calendar() {
                             <div key={index}
                                 onClick={() => {
                                     setDate(new Date(year, month, d));
+                                    openEventModal();
                                 }}
                             >
                                 {d > 0 && d <= days[month] ? d : ''}
                             </div>
                         );
-                    })}
+                    }) : 
+                    <h3>Get started by adding or selecting a calendar</h3>)}
             </div>
-            <Modal isOpen={isOpen} onRequestClose={closeModal} contentLabel="Example Modal" style={add_calendar_styles}>
-                <Popup type="addCalendar" onClose={closeModal}></Popup>
+            <Modal isOpen={addOpen} onRequestClose={closeAddModal} contentLabel="Example Modal" style={small_calendar_styles}>
+                <Popup type="addCalendar" onClose={closeAddModal}></Popup>
+            </Modal>
+            <Modal isOpen={deleteOpen} onRequestClose={closeDeleteModal} contentLabel="Example Modal" style={small_calendar_styles}>
+                <Popup type="deleteCalendar" onClose={closeDeleteModal}></Popup>
             </Modal>
             <div id="calendarEventButtonGroup">
-                <button onClick={openModal}>Add Calendar</button>
-                <button>Delete Calendar</button>
+                <button onClick={openAddModal}>Add Calendar</button>
+                <button onClick={openDeleteModal}>Delete Calendar</button>
                 <button>Calendar Permissions</button>
             </div>
         </div>

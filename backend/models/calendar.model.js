@@ -9,7 +9,6 @@ const calendarSchema = new Schema(
         {
             type: String,
             required: true,
-            unique: true,
             trim: true,
             minLength: 3
         },
@@ -18,9 +17,18 @@ const calendarSchema = new Schema(
             type: String, //User ID
             required: true
         },
+        ownerName:
+        {
+            type: String
+        },
         events:
         {
             type: [Event]
+        },
+        id:
+        {
+            type: String,
+            trim: true
         }
     },
     {

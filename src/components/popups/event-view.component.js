@@ -1,6 +1,5 @@
 import React from 'react';
-import "../css/footer.css";
-
+import '../../css/event.css';
 export default function Event(props) {
     return (
         <div className="event">

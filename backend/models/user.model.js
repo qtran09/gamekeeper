@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Calendar = require('./calendar.model');
+const Calendar = require('./calendar.model').schema;
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema(
@@ -28,7 +28,7 @@ const userSchema = new Schema(
         },
         Calendars:
         {
-            type: [String], //Calendar IDs
+            type: [Calendar], //Calendar IDs
         }
     },
     {
