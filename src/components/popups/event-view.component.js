@@ -15,13 +15,7 @@ export default function Event(props) {
     const eventSubmit = async (e) =>
     {
         e.preventDefault();
-        const event = {date: props.date, versus, result, notes}
-        console.log("Test: " + new Date());
-        console.log("Date: " + JSON.stringify(props));
-        console.log("Versus: " + versus);
-        console.log("Results: " + result);
-        console.log("Notes: " + notes);
-
+        const event = {date: props.date, versus, result, notes};
         let eventList = calendarData.calendar.events;
         if(!eventList) eventList = [];
         eventList.push(event);
@@ -39,7 +33,7 @@ export default function Event(props) {
                 <h1>Events List</h1>
                 <hr />
                 <div className="eventsList">
-                    {calendarData.calendar.events ? calendarData.calendar.events.map((calEvent, index) => {
+                    {calendarData.calendar.events ? calendarData.calendar.events.filter(ev => ev.date === props.date).map((calEvent, index) => {
                         return (
                             <div key={index}>
                                 <h5>Versus</h5>

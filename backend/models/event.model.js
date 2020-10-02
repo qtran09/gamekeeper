@@ -5,7 +5,7 @@ const eventSchema = new Schema(
     {
         date:
         {
-            type: Date,
+            type: String, //toDateString
             required: true
         },
         versus:

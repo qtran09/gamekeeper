@@ -109,7 +109,7 @@ export default function Calendar() {
                 </ul>
             </div>
             <Modal isOpen={eventOpen} onRequestClose={closeEventModal}>
-                <Popup type="event" date={date}></Popup>
+                <Popup type="event" date={date.toDateString()}></Popup>
             </Modal>
             <div id="calendar">
                 {((calendarData && calendarData.calendar)? Array(totalBoxes)
